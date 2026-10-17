@@ -1,0 +1,107 @@
+* { box-sizing: border-box;}
+
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    font-family: "Trebuchet MS", "Segoe UI", system-ui, sans-serif;
+    background: purple;
+}
+
+.kaart {
+    width: 100%;
+    max-width: 440px;
+    background: #fff;
+    border-radius: 24px;
+    padding: 32px 28px;
+    box-shadow: 0 10px 40px rgba(232, 93, 138, .25);
+    text-align: center;
+}
+
+h1 {
+    margin: 0 0 8px;
+    font-size: 1.7rem;
+    line-height: 1.25;
+    color: #c2185b;
+}
+
+p { margin: 8px 0; }
+
+.voortgang {
+    height: 8px;
+    background: #ffe3ec;
+    border-radius: 99px;
+    overflow: hidden;
+    margin-bottom: 24px;
+}
+.voortgang > div {
+    height: 100%;
+    width: 0;
+    background: #e85d8a;
+    border-radius: 99px;
+    transition: width .4s ease;
+}
+
+.teller { font-size: .9rem; opacity: .7; margin-bottom: 4px; }
+
+input[type="text"], textarea {
+    width: 100%;
+    margin-top: 18px;
+    padding: 14px;
+    font: inherit;
+    font-size: 1.05rem;
+    border: 2px solid #f4b6cb;
+    border-radius: 12px;
+    outline: none;
+}
+input[type="text"]:focus, textarea:focus { border-color: #e85d8a; }
+
+button {
+    font: inherit;
+    font-weight: 700;
+    font-size: 1.05rem;
+    border: 0;
+    border-radius: 12px;
+    padding: 12px 26px;
+    cursor: pointer;
+    background: #e85d8a;
+    color: #fff;
+}
+button:disabled { background: #f0c2d1; cursor: not-allowed; }
+button:focus-visible { outline: 3px solid #4a1f33; outline-offset: 2px; }
+
+.knoppenrij {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 26px;
+}
+.knop-licht { background: #ffe3ec; color: #c2185b; }
+
+/* Intro: het speelveld waar "Nee" wegschuift */
+.speelveld {
+    position: relative;
+    height: 190px;
+    margin-top: 20px;
+}
+.speelveld button {
+    position: absolute;
+    min-width: 110px;
+}
+#ja { z-index: 2; left: 50%; top: 20px; transform: translateX(-50%); }
+#nee {
+    z-index: 1;
+    background: #bdbdbd;
+    transition: left 1.6s ease, top 1.6s ease;
+}
+
+.groot-emoji { font-size: 3rem; margin-bottom: 8px; }
+
+@media (prefers-reduced-motion: reduce) {
+    #nee { transition: none; }
+    .voortgang > div { transition: none; }
+}
