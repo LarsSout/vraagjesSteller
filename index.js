@@ -1,16 +1,19 @@
+
 const ACCESS_KEY = "49df7ced-6dd6-4902-ba51-bcc3b586741f"; // <- plak hier je Web3Forms key
+
+const INTRO_VRAAG = "Zal je toets goed gaan??";
 
 const vragen = [
     { id: "film",    tekst: "Wat is je favoriete film?",                    placeholder: "Bv. Titanic" },
-    { id: "plannen", tekst: "Wat zijn je verdere plannen in het leven?",    placeholder: "Bv. Bakker blijven"},
+    { id: "plannen", tekst: "Wat zijn je verdere plannen in het leven?",    placeholder: "Bv. Gezin oprichten"},
     { id: "dier",    tekst: "Wat is je favoriete dier?",                    placeholder: "Bv. kat" },
-    { id: "kleur",   tekst: "Wat is je favoriete kleur?",                   placeholder: "Bv. roze" },
     { id: "eten",    tekst: "Wat is je favoriete eten?",                    placeholder: "Bv. pizza" },
     { id: "reis",    tekst: "Naar welk land wil je ooit nog reizen?",       placeholder: "Bv. Japan" },
     { id: "muziek",  tekst: "Welk liedje of welke artiest luister je het meest?", placeholder: "Bv. Taylor Swift" },
     { id: "seizoen", tekst: "Wat is je favoriete seizoen?",                 placeholder: "Bv. zomer" },
     { id: "kracht",  tekst: "Welke superkracht zou je kiezen?",             placeholder: "Bv. kunnen vliegen" },
-    { id: "hobby",   tekst: "Wat doe je graag in je vrije tijd.",           placeholder: "Bv. chatten met Lars Southcott" },
+    { id: "hobby",   tekst: "Wat doe je graag in je vrije tijd?",           placeholder: "Bv. gamen met vrienden" },
+    { id: "dag", tekst: "Hoe zie je ideale dag eruit met iemand?",            placeholder: "Bv. pretpark" },
     { id: "extra",   tekst: "Wil je me nog iets vertellen?",                placeholder: "Mag leeg blijven", optioneel: true, lang: true }
 ];
 
@@ -21,7 +24,7 @@ let huidige = 0;
 
 function toonIntro() {
     app.innerHTML = `
-        <h1>Vind je jezelf knap?</h1>
+        <h1>${INTRO_VRAAG}</h1>
         <div class="speelveld" id="speelveld">
             <button id="ja">Ja</button>
             <button id="nee">Nee</button>
@@ -85,7 +88,7 @@ function toonIntro() {
 
     const klaar = (keuze) => {
         document.removeEventListener("pointermove", bijBeweging);
-        antwoorden["Vind je jezelf knap? (gekozen knop)"] = keuze;
+        antwoorden[INTRO_VRAAG + " (gekozen knop)"] = keuze;
         toonKnapResultaat();
     };
     ja.addEventListener("click", () => klaar("Ja"));
@@ -94,8 +97,8 @@ function toonIntro() {
 
 function toonKnapResultaat() {
     app.innerHTML = `
-        <div class="groot-emoji">💖</div>
-        <h1>Je koos "ja", dit klopt!, je bent knap.</h1>
+        <div class="groot-emoji">🤝</div>
+        <h1>Je ga slagen!</h1>
         <div class="knoppenrij">
             <button id="verder">Next</button>
         </div>
@@ -170,7 +173,7 @@ async function verstuur() {
     const data = {
         access_key: ACCESS_KEY,
         subject: "Nieuwe antwoorden!",
-        "Vind je jezelf knap?": antwoorden["Vind je jezelf knap? (gekozen knop)"]
+        [INTRO_VRAAG]: antwoorden[INTRO_VRAAG + " (gekozen knop)"]
     };
     vragen.forEach((v) => { data[v.tekst] = antwoorden[v.id] || "-"; });
 
@@ -196,8 +199,8 @@ async function verstuur() {
 function toonBedankt() {
     app.innerHTML = `
         <div class="groot-emoji">🎉</div>
-        <h1>Dankjewel! <br> je bent de beste</h1>
-        <p>Je antwoorden zijn verstuurd 💛</p>
+        <h1>Dankjewel! <br> Fijn dat we vrienden zijn</h1>
+        <p>Je antwoorden zijn verstuurd 😊</p>
     `;
 }
 
