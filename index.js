@@ -199,8 +199,7 @@ async function verstuur() {
 function toonBedankt() {
     app.innerHTML = `
         <div class="groot-emoji">🎉</div>
-        <h1>Dankjewel! <br> Fijn dat we vrienden zijn</h1>
-        <p>Je antwoorden zijn verstuurd 😊</p>
+        <h1>Dankjewel! </h1>
     `;
 }
 
